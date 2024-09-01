@@ -1,0 +1,124 @@
+# El problema 1 es el siguiente:
+### **Sistema de Reservas de Aerolíneas**
+
+Desarrolla un sistema sencillo de reservas de aerolíneas. Este programa permitirá al usuario ingresar su información personal y elegir un vuelo. El programa debe realizar lo siguiente:
+
+1. **Información del usuario**:
+    - Solicita al usuario que ingrese su título (Sr. o Sra.), nombre y apellido.
+    - Muestra un saludo personalizado utilizando el nombre completo del usuario. Ejemplo: "Sr. Juan Pérez, ¡Bienvenido a FastFast Airlines!"
+2. **Selección de vuelo**:
+    - Permite al usuario seleccionar un origen y destino entre las siguientes ciudades: Medellín, Bogotá, Cartagena. Puedes cambiar las ciudades de destino.
+    - Solicita al usuario que ingrese el día de la semana en el que desea viajar (por ejemplo, lunes) y el día del mes (un número entre 1 y 30).
+    - Calcula el precio del billete dependiendo de la distancia entre las ciudades y el día de la semana, utilizando las siguientes reglas:
+        - Si la distancia entre las ciudades es inferior a 400 km:
+            - De lunes a jueves, el precio es de $79,900.
+            - De viernes a domingo, el precio es de $119,900.
+        - Si la distancia entre las ciudades es de 400 km o más:
+            - De lunes a jueves, el precio es de $156,900.
+            - De viernes a domingo, el precio es de $213,000.
+    
+    **Distancias entre ciudades**:
+    
+    - Medellín a Bogotá: 240 km.
+    - Medellín a Cartagena: 461 km.
+    - Bogotá a Cartagena: 657 km.
+3. **Asignación de asiento**:
+    - Pregunta al usuario si prefiere un asiento en el pasillo, junto a la ventana, o si no tiene preferencia.
+    - Asigna el asiento según la preferencia:
+        - Pasillo: Asiento C.
+        - Ventana: Asiento A.
+        - Sin preferencia: Asiento B.
+    - Selecciona aleatoriamente un número de asiento entre 1 y 29 utilizando `random.randint(1, 29)` y muestra el asiento asignado (por ejemplo, 20C).
+4. **Salida**:
+    - Muestra el nombre completo del usuario, origen, destino, fecha de vuelo, precio del boleto y asiento asignado.
+
+
+
+# Análisis
+Se realiza un organizador gráfico, una tipo de diagrama de flujo, en el que de analiza el cómo resolver el problema , mediante pasos lógicos y sucesivos.
+
+![analisis del problema uno](diagrama_reserva_aerolinea.png)
+*Imagen 1. Analisis de la aerolinea*
+
+# pseudocódigo
+ ` ` 
+
+    Inicio
+
+    -Solicitar información del usuario
+    Mostrar "¿Es usted señor o señora? (Sr./Sra.): "
+    Leer titulo
+
+    Mostrar "Introduce tu nombre: "
+    Leer nombre
+
+    Mostrar "Introduce tu apellido: "
+    Leer apellido
+
+    - Mostrar saludo personalizado
+    Mostrar titulo + " " + nombre + " " + apellido + ", ¡Bienvenido a Avianca!"
+
+    - Solicitar origen y destino del vuelo
+    Mostrar "Ingresa tu origen (Medellín, Bogotá, Cartagena): "
+    Leer origen
+
+    Mostrar "Ingresa tu destino (Medellín, Bogotá, Cartagena): "
+    Leer destino
+
+    - Verificar que origen y destino no sean iguales
+    Si origen = destino Entonces
+        Mostrar "El origen y el destino no pueden ser la misma ciudad. Por favor, inténtelo de nuevo."
+        Terminar
+
+    - Solicitar día de la semana y del mes
+    Mostrar "Ingrese el día de la semana (por ejemplo, lunes): "
+    Leer dia_semana
+
+    Mostrar "Introduzca el día del mes (1-30): "
+    Leer dia_mes
+
+    - Obtener distancia entre ciudades
+    Si (origen = "Medellín" Y destino = "Bogotá") O (origen = "Bogotá" Y destino = "Medellín") Entonces
+        distancia = 240
+    SiNo Si (origen = "Medellín" Y destino = "Cartagena") O (origen = "Cartagena" Y destino = "Medellín") Entonces
+        distancia = 461
+    SiNo Si (origen = "Bogotá" Y destino = "Cartagena") O (origen = "Cartagena" Y destino = "Bogotá") Entonces
+        distancia = 657
+
+    - Calcular el precio del boleto
+    Si distancia < 400 Entonces
+        Si dia_semana = "lunes" O dia_semana = "martes" O dia_semana = "miércoles" O dia_semana = "jueves" Entonces
+        precio = 79900
+        SiNo
+        precio = 119900
+    SiNo
+        Si dia_semana = "lunes" O dia_semana = "martes" O dia_semana = "miércoles" O dia_semana = "jueves" Entonces
+        precio = 156900
+        SiNo
+        precio = 213000
+
+    - Solicitar preferencia de asiento
+    Mostrar "¿Prefiere un asiento en el pasillo, junto a la ventana o sin preferencia? (pasillo/ventana/sin preferencia): "
+    Leer preferencia_asiento
+
+    - Asignar el asiento según la preferencia
+    Si preferencia_asiento = "pasillo" Entonces
+        letra_asiento = "C"
+    SiNo Si preferencia_asiento = "ventana" Entonces
+        letra_asiento = "A"
+    SiNo
+        letra_asiento = "B"
+
+    - Generar número de asiento aleatorio entre 1 y 29
+    numero_asiento = GenerarNumeroAleatorio(1, 29)
+
+    asiento = ConvertirATexto(numero_asiento) + letra_asiento
+
+    - Mostrar detalles de la reserva
+    Mostrar "Tu vuelo de " + origen + " a " + destino + " del " + dia_semana + " " + ConvertirATexto(dia_mes) + " está reservado."
+    Mostrar "Precio del boleto: $" + FormatoMoneda(precio)
+    Mostrar "Tu asiento es: " + asiento
+
+    Fin
+
+  ` ` 

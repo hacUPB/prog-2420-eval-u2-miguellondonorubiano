@@ -2,6 +2,8 @@
 # Documentación del proyecto
 ## Unidad 2
 
-Estudiante:  
-ID:  
+Estudiante: Miguel Angel Londoño Rubiano    
+ID: 000421385
 ---
+
+**En esta unidad se encontrara  separado por carpetas los diferentes problemas , cada carpeta tiene el propio nombre de cada problema y dentro de cada una de ellas se encontrara un archivo con el análisis y el pseudocódigo , además aparte de estas habrá otra carpeta que se destinó para la autoevaluación.**

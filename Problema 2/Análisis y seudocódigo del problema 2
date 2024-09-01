@@ -1,0 +1,85 @@
+ ## El problema 2 es el siguiente:
+
+  simular la desintegración orbital de un satélite debido a la resistencia atmosférica. A medida que un satélite orbita la Tierra, pierde gradualmente altitud debido a las fuerzas de arrastre, las cuales aumentan a medida que el satélite se acerca a la Tierra.
+
+1. **Descripción**:
+    - El satélite comienza a una altitud inicial específica y orbita la Tierra en una trayectoria circular.
+    - La fuerza de arrastre que actúa sobre el satélite aumenta a medida que desciende, lo que provoca una pérdida de altitud más rápida con el tiempo.
+    - El programa debe simular el descenso del satélite hasta que se estabilice en una órbita baja o reingrese en la atmósfera terrestre.
+
+**Datos de entrada**:
+
+- **Altitud inicial**: La altitud inicial del satélite (en kilómetros).
+- **Coeficiente de arrastre**: Factor que determina la rapidez con la que el satélite pierde altitud. Este valor aumenta a medida que disminuye la altitud del satélite.
+- **Altitud mínima de seguridad**: Altitud por debajo de la cual se considera que el satélite ha reingresado en la atmósfera terrestre y se ha desintegrado.
+1. **Simulación de desintegración orbital**:
+    - Solicita al usuario que ingrese la altitud inicial del satélite (en kilómetros).
+    - Solicita al usuario que ingrese el coeficiente de arrastre inicial (un valor decimal pequeño, como 0.01).
+    - Solicita al usuario que ingrese la altitud mínima de seguridad (en kilómetros).
+2. **Proceso**:
+    - Utiliza un bucle para simular cada órbita (considera un bucle como una órbita alrededor de la Tierra).
+    - Para cada órbita:
+        - Calcula la pérdida de altitud debido al arrastre: `altitud_perdida = coeficiente_arrastre * altitud_actual`.
+        - Resta la pérdida de altitud a la altitud actual.
+        - Aumenta ligeramente el coeficiente de arrastre (por ejemplo, `coeficiente_arrastre += 0.0001`) para simular un aumento de la resistencia a medida que disminuye la altitud.
+        - Detén el bucle si el satélite alcanza la altitud mínima de seguridad o si se estabiliza (es decir, la pérdida de altitud se vuelve muy pequeña).
+3. **Salida**:
+    - Si el satélite se estabiliza en órbita (la pérdida de altitud es muy pequeña), muestra la altitud final y el número de órbitas completadas.
+    - Si el satélite reingresa en la atmósfera terrestre, muestra un mensaje indicando el reingreso y el número total de órbitas completadas.
+
+# Análisis
+Se realiza un organizador gráfico, una tipo de diagrama de flujo, en el que de analiza el cómo resolver el problema , mediante pasos lógicos y sucesivos.
+
+![analisis del problema dos](diagrama_desintegracion_orbital.png)
+*Imagen 1. Analisis de la desintegracion orbital*
+
+# pseudocódigo
+    
+     INICIO
+
+        -Solicitud de datos de entrada al usuario
+        ESCRIBIR "Ingrese la altitud inicial del satélite   (en kilómetros): "
+        LEER altitud_actual
+        ESCRIBIR "Ingrese el coeficiente de arrastre inicial (un valor decimal pequeño, como 0.01): "
+        LEER coeficiente_arrastre
+        ESCRIBIR "Ingrese la altitud mínima de seguridad (en kilómetros): "
+        LEER altitud_minima_seguridad
+
+        -Inicialización de variables
+        numero_orbitas = 0
+        pérdida_pequeña = 0.01 // Umbral de pérdida pequeña de altitud
+        estabilizado = FALSO
+
+        -Proceso de simulación de la desintegración orbital
+        MIENTRAS (altitud_actual > altitud_minima_seguridad Y NO estabilizado)
+            numero_orbitas = numero_orbitas + 1
+
+            -Calcular la pérdida de altitud debido al arrastre
+            altitud_perdida = coeficiente_arrastre * altitud_actual
+
+            -Actualizar la altitud actual del satélite
+            altitud_actual = altitud_actual - altitud_perdida
+
+            -Incrementar ligeramente el coeficiente de arrastre
+            coeficiente_arrastre = coeficiente_arrastre + 0.0001
+
+            -Verificar si la pérdida de altitud es muy pequeña (estabilización)
+            SI altitud_perdida <= pérdida_pequeña ENTONCES
+                estabilizado = VERDADERO
+            FIN SI
+
+        FIN MIENTRAS
+
+        -Salida de resultados
+        SI estabilizado ENTONCES
+            ESCRIBIR "El satélite se ha estabilizado en una órbita baja."
+            ESCRIBIR "Altitud final: " + altitud_actual + " kilómetros."
+            ESCRIBIR "Número de órbitas completadas: " + numero_orbitas
+        SI NO
+            ESCRIBIR "El satélite ha reingresado en la atmósfera terrestre."
+            ESCRIBIR "Número total de órbitas completadas: " + numero_orbitas
+        FIN SI
+
+        FIN
+
+    

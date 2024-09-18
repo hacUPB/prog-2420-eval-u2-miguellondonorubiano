@@ -4,7 +4,7 @@ import random
 def main():
     import random
 
-# Función para obtener la información del usuario
+
 def obtener_informacion_usuario():
     titulo = input("Ingrese su título (Sr. o Sra.): ")
     nombre = input("Ingrese su nombre: ")
@@ -12,7 +12,7 @@ def obtener_informacion_usuario():
     print(f"{titulo} {nombre} {apellido}, ¡Bienvenido a FastFast Airlines!")
     return titulo, nombre, apellido
 
-# Función para seleccionar vuelo
+
 def seleccionar_vuelo():
     ciudades = {
         "Medellín": {"Bogotá": 240, "Cartagena": 461},
@@ -37,7 +37,7 @@ def seleccionar_vuelo():
     
     return origen, destino, dia_semana, dia_mes, distancia
 
-# Función para calcular el precio del billete
+
 def calcular_precio(distancia, dia_semana):
     dias_semana = ["lunes", "martes", "miércoles", "jueves"]
     
@@ -52,7 +52,7 @@ def calcular_precio(distancia, dia_semana):
         else:
             return 213000
 
-# Función para asignar asiento
+
 def asignar_asiento():
     preferencia = input("¿Si prefiere asiento en pasillo (Escribir Pasillo),si prefiere en ventana (Escribir ventana) o sin preferencia (Escribir Cualquier caracter) :? ").lower()
     
@@ -66,7 +66,7 @@ def asignar_asiento():
     numero_asiento = random.randint(1, 29)
     return f"{numero_asiento}{letra_asiento}"
 
-# Función principal
+
 def sistema_reservas():
     titulo, nombre, apellido = obtener_informacion_usuario()
     origen, destino, dia_semana, dia_mes, distancia = seleccionar_vuelo()
@@ -82,7 +82,7 @@ def sistema_reservas():
     print(f"Asiento asignado: {asiento}")
     print("\n¡Gracias por reservar con FastFast Airlines!")
 
-# Ejecutar el programa
+
 sistema_reservas()
 
 
